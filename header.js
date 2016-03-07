@@ -1,10 +1,19 @@
 var bel = require('bel')
 
+var store = require('./store')
+
 var ENTER_KEY = 13
 
-module.exports = function (addTodo) {
+function addTodo (newTodo) {
+  store({
+    type: 'ADD_TODO',
+    payload: newTodo
+  })
+}
+
+module.exports = function () {
   return bel`<header class="header">
-    <h1>Things I hate</h1>
+    <h1>todos</h1>
     <input class="new-todo" placeholder="What needs to be done?" onkeydown=${function (e) {
       if (e.keyCode === ENTER_KEY) {
         e.preventDefault()

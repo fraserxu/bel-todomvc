@@ -5,19 +5,20 @@ var Header = require('./header')
 var Footer = require('./footer')
 var TodoList = require('./todoList')
 
-function addTodo (newTodo) {
+function toggleAll () {
   store({
-    type: 'ADD_TODO',
-    payload: newTodo
+    type: 'TOGGLE_ALL'
   })
 }
 
 function render (state) {
   return bel`<section class="todoapp">
-    ${Header(addTodo)}
+    ${Header()}
     <section class="main">
-      <input class="toggle-all" type="checkbox" />
-      ${TodoList(state.todos)}
+      <input class="toggle-all" type="checkbox" onchange=${function () {
+        toggleAll()
+      }}/>
+      ${TodoList()}
     </section>
     ${Footer()}
   </section>`
@@ -26,7 +27,6 @@ function render (state) {
 var app = render(store.initialState())
 
 store.on('*', function (action, state, oldState) {
-  console.log('app', app)
   app.update(render(state))
 })
 
