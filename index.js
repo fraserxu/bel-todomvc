@@ -4,7 +4,7 @@ var Header = require('./header')
 var Footer = require('./footer')
 var TodoList = require('./todoList')
 
-var lists = [
+var todos = [
   'grizzly',
   'polar',
   'brown'
@@ -15,7 +15,7 @@ function createApp () {
     ${Header()}
     <section class="main">
       <input class="toggle-all" type="checkbox" />
-      ${TodoList(lists)}
+      ${TodoList(todos)}
     </section>
     ${Footer()}
   </section>`
