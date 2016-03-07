@@ -1,4 +1,4 @@
-A todomvc implemented in Bel
+A todomvc implemented in [Bel](https://github.com/shama/bel)
 
 > A simple library for composable DOM elements using tagged template strings.
 
