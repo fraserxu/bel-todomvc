@@ -10,17 +10,22 @@ var todos = [
   'brown'
 ]
 
-function createApp () {
+function addTodo (newTodo) {
+  todos.push(newTodo)
+  app.update(createApp(todos))
+}
+
+function createApp (data) {
   return bel`<section class="todoapp">
-    ${Header()}
+    ${Header(addTodo)}
     <section class="main">
       <input class="toggle-all" type="checkbox" />
-      ${TodoList(todos)}
+      ${TodoList(data)}
     </section>
     ${Footer()}
   </section>`
 }
 
-var app = createApp()
+var app = createApp(todos)
 
 document.querySelector('main').appendChild(app)
