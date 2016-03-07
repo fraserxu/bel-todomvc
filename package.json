@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bel": "^2.0.0",
+    "store-emitter": "^2.1.0",
     "todomvc-app-css": "^2.0.4",
     "todomvc-common": "^1.0.2"
   },
