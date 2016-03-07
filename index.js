@@ -1,26 +1,9 @@
 var bel = require('bel')
-var createStore = require('store-emitter')
 
+var store = require('./store')
 var Header = require('./header')
 var Footer = require('./footer')
 var TodoList = require('./todoList')
-
-var initialState = {
-  todos: [
-    'grizzly',
-    'polar',
-    'brown'
-  ]
-}
-
-function modifier (action, state) {
-  if (action.type === 'ADD_TODO') {
-    state.todos.push(action.payload)
-    return state
-  }
-}
-
-var store = createStore(modifier, initialState)
 
 function addTodo (newTodo) {
   store({
@@ -28,10 +11,6 @@ function addTodo (newTodo) {
     payload: newTodo
   })
 }
-
-store.on('*', function (action, state, oldState) {
-  app.update(render(state))
-})
 
 function render (state) {
   return bel`<section class="todoapp">
@@ -44,6 +23,11 @@ function render (state) {
   </section>`
 }
 
-var app = render(initialState)
+var app = render(store.initialState())
+
+store.on('*', function (action, state, oldState) {
+  console.log('app', app)
+  app.update(render(state))
+})
 
 document.querySelector('main').appendChild(app)
